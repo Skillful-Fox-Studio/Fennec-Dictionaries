@@ -1,0 +1,36 @@
+name: Sign reviewed dictionary catalog
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: dictionary-publication
+  cancel-in-progress: false
+jobs:
+  sign:
+    if: github.ref == 'refs/heads/main' && github.repository == 'Skillful-Fox-Studio/Fennec-Dictionaries'
+    environment: dictionary-publishing
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+      - run: npm test
+      - name: Verify reviewed catalog and public assets
+        run: node scripts/preflight.mjs
+      - name: Sign with protected environment secret
+        env:
+          FENNEC_DICTIONARY_SIGNING_KEY: ${{ secrets.FENNEC_DICTIONARY_SIGNING_KEY }}
+        run: node scripts/sign.mjs publication/catalog-input.json dist/catalog-signed.json fennec-dictionaries-1
+      - name: Store signed catalog in a draft release for final review
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sequence=$(node --input-type=module -e "import{readFileSync}from'node:fs';console.log(JSON.parse(readFileSync('publication/catalog-input.json')).sequence)")
+          gh release create "catalog-$sequence" dist/catalog-signed.json --target "$GITHUB_SHA" --draft --title "Dictionary catalog $sequence" --notes "Signed catalog for owner review. Not yet deployed to catalog/v1.json."

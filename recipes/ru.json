@@ -1,0 +1,14 @@
+{
+  "language": "ru",
+  "name": "Russian",
+  "version": "3.0.0-fennec.1",
+  "engine": "nspell-2.1.5",
+  "tokenizer": "cyrillic-v1",
+  "source": "https://www.npmjs.com/package/dictionary-ru/v/3.0.0",
+  "license": "BSD-style; see the complete upstream notice, including modification marking",
+  "files": {
+    "aff": { "url": "https://cdn.jsdelivr.net/npm/dictionary-ru@3.0.0/index.aff", "bytes": 71236, "sha256": "38ce7d4af78e211e9bafe4bf7e3d6a2c420591136cb738ec6648f8fdf6524cd7" },
+    "dic": { "url": "https://cdn.jsdelivr.net/npm/dictionary-ru@3.0.0/index.dic", "bytes": 3473191, "sha256": "f6047416a0204adbecf3a451b874ec8a97ee37e2cbc714466ef04d8dbcc0d6fc" },
+    "notice": { "url": "https://cdn.jsdelivr.net/npm/dictionary-ru@3.0.0/license", "bytes": 1886, "sha256": "262af2f6ad70a61e5ee1332ff44fa8ee50edca819cf33207d8ad6ba6a0c9be52" }
+  }
+}

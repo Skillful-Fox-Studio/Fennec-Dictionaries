@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "sequence": 1,
+  "dictionaries": [
+    {
+      "language": "ru",
+      "name": "Russian",
+      "version": "3.0.0-fennec.1",
+      "engine": "nspell-2.1.5",
+      "tokenizer": "cyrillic-v1",
+      "source": "https://www.npmjs.com/package/dictionary-ru/v/3.0.0",
+      "license": "BSD-style; see the complete upstream notice, including modification marking",
+      "url": "https://github.com/Skillful-Fox-Studio/Fennec-Dictionaries/releases/download/ru-3.0.0-fennec.1/dictionary-ru-3.0.0-fennec.1.json",
+      "bytes": 3694577,
+      "sha256": "3f524e2bcbed023c361eeec70d3c30f9b79d7c0fbf71523c31c071df0302fdbc"
+    }
+  ]
+}
