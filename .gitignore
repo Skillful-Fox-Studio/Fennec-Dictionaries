@@ -1,0 +1,6 @@
+/dist/
+*.pem
+!trust/public-key.pem
+*.key
+.env*
+node_modules/

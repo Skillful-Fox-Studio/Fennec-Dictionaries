@@ -1,0 +1,11 @@
+{
+  "name": "fennec-dictionaries",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test",
+    "build:ru": "node scripts/build.mjs recipes/ru.json",
+    "sign": "node scripts/sign.mjs"
+  }
+}
