@@ -2,7 +2,7 @@
 
 Independent, data-only spelling dictionaries for Fennec. This repository is a publication source, not an application extension or a model registry.
 
-Status: publication tooling and the initial RU catalog are prepared. The owner generated the production key and configured the protected GitHub Environment Secret; only the public key belongs in this repository. No signed catalog or dictionary release is published yet. The current Fennec app still uses the accepted Slice 87 installer. Catalog integration is Slice 88 and is not delivered by creating this repository.
+Status: the qualified RU package is public as Release `ru-3.0.0-fennec.1`. Catalog sequence 1 was signed by the owner-approved workflow run `34167487595`; its signature, reviewed payload and public package were independently verified. `catalog/v1.json` contains those exact signed bytes and becomes the live endpoint when merged to main. Only the public signing key belongs in this repository. The current Fennec app still uses the accepted Slice 87 installer; catalog integration remains separate Slice 88 work.
 
 ## Product contract
 
@@ -19,7 +19,7 @@ Status: publication tooling and the initial RU catalog are prepared. The owner g
 - `scripts/`: build, catalog validation, Ed25519 signing and package verification using Node built-ins only.
 - `test/`: offline tests using ephemeral test keys, never production keys.
 - `dist/`: ignored local build outputs; publish packages as persistent Release assets, never as CI artifacts.
-- `catalog/v1.json`: reserved path for the first reviewed signed catalog; it does not exist until publication is ready.
+- `catalog/v1.json`: reviewed signed catalog served from main; never edit its payload or signature by hand.
 
 Requires Node 22 or newer. No npm dependencies or package installation are needed.
 
