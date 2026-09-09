@@ -1,0 +1,44 @@
+name: Stage accepted FR and IT dictionaries
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: dictionary-publication
+  cancel-in-progress: false
+jobs:
+  stage:
+    if: github.ref == 'refs/heads/main' && github.repository == 'Skillful-Fox-Studio/Fennec-Dictionaries'
+    environment: dictionary-publishing
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+      - run: npm test
+      - name: Build accepted packages from pinned upstream sources
+        run: |
+          npm run build:fr
+          npm run build:it
+      - name: Create owner-review draft releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create fr-FR-7.7-fennec.1 \
+            dist/fr-FR-7.7-fennec.1/dictionary-fr-FR-7.7-fennec.1.json \
+            dist/fr-FR-7.7-fennec.1/UPSTREAM-LICENSE.txt \
+            --target "$GITHUB_SHA" --draft \
+            --title "French (France, classic) 7.7 for Fennec" \
+            --notes "Owner-accepted FR 7.7 classic dictionary. Review package identity, provenance and MPL-2.0 notices before publishing."
+          gh release create it-IT-5.1.1-fennec.1 \
+            dist/it-IT-5.1.1-fennec.1/dictionary-it-IT-5.1.1-fennec.1.json \
+            dist/it-IT-5.1.1-fennec.1/UPSTREAM-LICENSE.txt \
+            --target "$GITHUB_SHA" --draft \
+            --title "Italian (Italy) 5.1.1 for Fennec" \
+            --notes "Owner-accepted IT 5.1.1 dictionary. Review package identity, provenance, GPL-3.0 and legacy notices before publishing."

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "sequence": 1,
+  "sequence": 2,
   "dictionaries": [
     {
       "language": "ru",
@@ -13,6 +13,30 @@
       "url": "https://github.com/Skillful-Fox-Studio/Fennec-Dictionaries/releases/download/ru-3.0.0-fennec.1/dictionary-ru-3.0.0-fennec.1.json",
       "bytes": 3694577,
       "sha256": "3f524e2bcbed023c361eeec70d3c30f9b79d7c0fbf71523c31c071df0302fdbc"
+    },
+    {
+      "language": "fr-FR",
+      "name": "French (France, classic)",
+      "version": "7.7-fennec.1",
+      "engine": "hunspell-wasm-0.3.0",
+      "tokenizer": "latin-v1",
+      "source": "https://www.grammalecte.net/dic/hunspell-french-dictionaries-v7.7.zip",
+      "license": "MPL-2.0; complete text and upstream attribution included",
+      "url": "https://github.com/Skillful-Fox-Studio/Fennec-Dictionaries/releases/download/fr-FR-7.7-fennec.1/dictionary-fr-FR-7.7-fennec.1.json",
+      "bytes": 1547452,
+      "sha256": "1d567681a52043eb0506a2bf9271ddfc785bf554e180b30db6b9729b271be9ac"
+    },
+    {
+      "language": "it-IT",
+      "name": "Italian (Italy)",
+      "version": "5.1.1-fennec.1",
+      "engine": "hunspell-wasm-0.3.0",
+      "tokenizer": "latin-v1",
+      "source": "https://github.com/LibreOffice/dictionaries/tree/32b006a2c22a4ac7e8ed3f03346f7b3d85a970a4/it_IT",
+      "license": "GNU GPL version 3; complete current and legacy notices included",
+      "url": "https://github.com/Skillful-Fox-Studio/Fennec-Dictionaries/releases/download/it-IT-5.1.1-fennec.1/dictionary-it-IT-5.1.1-fennec.1.json",
+      "bytes": 1597715,
+      "sha256": "c4fed67f3e105af351e0683c5631ca1c3ff5aab46ee02425d24558d91f48b75b"
     }
   ]
 }
