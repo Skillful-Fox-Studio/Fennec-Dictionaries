@@ -20,7 +20,7 @@ function identity(entry) {
   requireValue(text(entry.version, 64) && token.test(entry.version), 'Invalid version');
   requireValue(text(entry.name, 100) && text(entry.source, 500) && text(entry.license, 1000), 'Missing metadata');
   requireValue(entry.source.startsWith('https://'), 'Invalid provenance');
-  requireValue(entry.engine === 'nspell-2.1.5', 'Unsupported engine');
+  requireValue(['nspell-2.1.5', 'hunspell-wasm-0.3.0'].includes(entry.engine), 'Unsupported engine');
   requireValue(['latin-v1', 'cyrillic-v1'].includes(entry.tokenizer), 'Unsupported tokenizer');
 }
 export function assetName(entry) {

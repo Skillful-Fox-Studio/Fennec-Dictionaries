@@ -1,0 +1,29 @@
+{
+  "language": "it-IT",
+  "name": "Italian (Italy)",
+  "version": "5.1.1-fennec.1",
+  "engine": "hunspell-wasm-0.3.0",
+  "tokenizer": "latin-v1",
+  "source": "https://github.com/LibreOffice/dictionaries/tree/32b006a2c22a4ac7e8ed3f03346f7b3d85a970a4/it_IT",
+  "license": "GNU GPL version 3; complete current and legacy notices included",
+  "files": {
+    "aff": { "url": "https://raw.githubusercontent.com/LibreOffice/dictionaries/32b006a2c22a4ac7e8ed3f03346f7b3d85a970a4/it_IT/it_IT.aff", "bytes": 70054, "sha256": "951afaa19272f13555b8823e8bcf9ccf78f8fe1a07835bdfb912ab3e4d537c2b" },
+    "dic": { "url": "https://raw.githubusercontent.com/LibreOffice/dictionaries/32b006a2c22a4ac7e8ed3f03346f7b3d85a970a4/it_IT/it_IT.dic", "bytes": 1295083, "sha256": "bae1e3501dcd2a923669592493b3fde6c02aae7c7aab83bf5e5b49077e73dd64" },
+    "notice": {
+      "bytes": 131195,
+      "sha256": "629bb9e9de0ad36b4504564c02ecab33f034c19449733a1f8e6fed064b900af0",
+      "parts": [
+        { "label": "README_it_IT.txt", "url": "https://raw.githubusercontent.com/LibreOffice/dictionaries/32b006a2c22a4ac7e8ed3f03346f7b3d85a970a4/it_IT/README_it_IT.txt", "bytes": 38902, "sha256": "34c3e93595cf3cf5f3afc9bc0d98eea12593750383f1e82ed1d3ca29f9681283" },
+        { "label": "CHANGELOG.txt", "url": "https://raw.githubusercontent.com/LibreOffice/dictionaries/32b006a2c22a4ac7e8ed3f03346f7b3d85a970a4/it_IT/CHANGELOG.txt", "bytes": 1182, "sha256": "387d7d23e4d5a033df88c1afe61364ece21137fe9ab3bcff745d4d3b83e6350c" },
+        { "label": "legacy/it_IT_AUTHORS.iso-8859-1-to-utf8", "encoding": "iso-8859-1", "url": "https://raw.githubusercontent.com/LibreOffice/dictionaries/32b006a2c22a4ac7e8ed3f03346f7b3d85a970a4/it_IT/legacy/it_IT_AUTHORS", "bytes": 5302, "sha256": "67cc91ed0bff69cb9b387e5a28e37503a2a4afadc282b6a29cf08be7440b38ef" },
+        { "label": "legacy/it_IT_COPYING", "url": "https://raw.githubusercontent.com/LibreOffice/dictionaries/32b006a2c22a4ac7e8ed3f03346f7b3d85a970a4/it_IT/legacy/it_IT_COPYING", "bytes": 34695, "sha256": "3e41d215a0d9ce21c1fa982d48d2958d539a51011f469f741b51f97e2595ec7e" },
+        { "label": "legacy/it_IT_ChangeLog.iso-8859-1-to-utf8", "encoding": "iso-8859-1", "url": "https://raw.githubusercontent.com/LibreOffice/dictionaries/32b006a2c22a4ac7e8ed3f03346f7b3d85a970a4/it_IT/legacy/it_IT_ChangeLog", "bytes": 9391, "sha256": "3348a080d1896ac622247679e890bf8e08e395d887c6b67dc81518ca8631b827" },
+        { "label": "legacy/it_IT_README.1st.iso-8859-1-to-utf8", "encoding": "iso-8859-1", "url": "https://raw.githubusercontent.com/LibreOffice/dictionaries/32b006a2c22a4ac7e8ed3f03346f7b3d85a970a4/it_IT/legacy/it_IT_README.1st", "bytes": 3099, "sha256": "0328874f246fa9511fb19be6fc38db57f1351b00356e7c7187de59529fb04e6f" },
+        { "label": "legacy/it_IT_README.txt.iso-8859-1-to-utf8", "encoding": "iso-8859-1", "url": "https://raw.githubusercontent.com/LibreOffice/dictionaries/32b006a2c22a4ac7e8ed3f03346f7b3d85a970a4/it_IT/legacy/it_IT_README.txt", "bytes": 18501, "sha256": "ec6332fd60cca5d4cd1b69c78aebae33bb49ccea856ed1d69722e3a23f0dfc82" },
+        { "label": "legacy/it_IT_license.txt", "url": "https://raw.githubusercontent.com/LibreOffice/dictionaries/32b006a2c22a4ac7e8ed3f03346f7b3d85a970a4/it_IT/legacy/it_IT_license.txt", "bytes": 1099, "sha256": "4de624abc748506298e7be68f2213e422673b43e1674da4b376804096b87dcec" },
+        { "label": "legacy/it_IT_notes.txt.iso-8859-1-to-utf8", "encoding": "iso-8859-1", "url": "https://raw.githubusercontent.com/LibreOffice/dictionaries/32b006a2c22a4ac7e8ed3f03346f7b3d85a970a4/it_IT/legacy/it_IT_notes.txt", "bytes": 16027, "sha256": "3fac20f1771ddf58f09e0deb3b38b8696d3e0eda12c3f7d1ba3b29cd4850f6f4" },
+        { "label": "legacy/it_IT_todo.txt.iso-8859-1-to-utf8", "encoding": "iso-8859-1", "url": "https://raw.githubusercontent.com/LibreOffice/dictionaries/32b006a2c22a4ac7e8ed3f03346f7b3d85a970a4/it_IT/legacy/it_IT_todo.txt", "bytes": 2283, "sha256": "f523c1bbf7742cbdef0230df81d341ac722f12b0717aa10c9df62d363a0c6d54" }
+      ]
+    }
+  }
+}

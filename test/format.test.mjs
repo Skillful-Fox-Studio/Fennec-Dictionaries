@@ -21,6 +21,14 @@ test('package preserves dictionary and full notice bytes and is reproducible', (
   const decoded = verifyPackage(pack.bytes, pack.entry);
   for (const name of Object.keys(files)) assert.deepEqual(Buffer.from(decoded.files[name]), files[name]);
 });
+
+test('Hunspell packages retain their engine identity and round trip in a mixed catalog', () => {
+  const modern = makePackage({ ...recipe, language: 'de-DE', name: 'German (Germany)', engine: 'hunspell-wasm-0.3.0', tokenizer: 'latin-v1' }, files);
+  assert.equal(verifyPackage(modern.bytes, modern.entry).engine, 'hunspell-wasm-0.3.0');
+  const mixed = { schemaVersion: 1, sequence: 2, dictionaries: [pack.entry, modern.entry] };
+  assert.deepEqual(verifyCatalog(signCatalog(mixed, 'test-only', privateKey), trust), mixed);
+  assert.throws(() => verifyPackage(modern.bytes, { ...modern.entry, engine: 'nspell-2.1.5' }), /identity/);
+});
 test('catalog round trip authenticates before returning entries', () => {
   const signed = signCatalog(catalog, 'test-only', privateKey);
   assert.deepEqual(verifyCatalog(signed, trust, 2), catalog);
@@ -75,4 +83,27 @@ test('RU recipe uses the audited source hashes and full notice', async () => {
   const ru = JSON.parse(await readFile(new URL('../recipes/ru.json', import.meta.url)));
   assert.equal(ru.files.dic.sha256, 'f6047416a0204adbecf3a451b874ec8a97ee37e2cbc714466ef04d8dbcc0d6fc');
   assert.equal(ru.files.notice.sha256, '262af2f6ad70a61e5ee1332ff44fa8ee50edca819cf33207d8ad6ba6a0c9be52');
+});
+
+test('FR and IT release recipes pin the accepted Hunspell candidates and complete notices', async () => {
+  const fr = JSON.parse(await readFile(new URL('../recipes/fr-FR.json', import.meta.url)));
+  const it = JSON.parse(await readFile(new URL('../recipes/it-IT.json', import.meta.url)));
+  assert.deepEqual([fr.language,fr.version,fr.engine], ['fr-FR','7.7-fennec.1','hunspell-wasm-0.3.0']);
+  assert.equal(fr.archive.sha256, '44314d992f94b4658c31a86ef2351724a43067531b0af3643f91bf0220eee616');
+  assert.equal(fr.files.notice.parts.length, 2);
+  assert.deepEqual([it.language,it.version,it.engine], ['it-IT','5.1.1-fennec.1','hunspell-wasm-0.3.0']);
+  assert.equal(it.files.dic.sha256, 'bae1e3501dcd2a923669592493b3fde6c02aae7c7aab83bf5e5b49077e73dd64');
+  assert.equal(it.files.notice.parts.length, 10);
+});
+
+test('sequence-2 publication input retains RU and pins the built FR/IT entries', async () => {
+  const publication = JSON.parse(await readFile(new URL('../publication/catalog-input.json', import.meta.url)));
+  assert.equal(validateCatalog(publication), publication);
+  assert.equal(publication.sequence, 2);
+  assert.deepEqual(publication.dictionaries.map(entry => entry.language), ['ru','fr-FR','it-IT']);
+  const expected = {
+    'fr-FR':['7.7-fennec.1',1547452,'1d567681a52043eb0506a2bf9271ddfc785bf554e180b30db6b9729b271be9ac'],
+    'it-IT':['5.1.1-fennec.1',1597715,'c4fed67f3e105af351e0683c5631ca1c3ff5aab46ee02425d24558d91f48b75b'],
+  };
+  for (const entry of publication.dictionaries.slice(1)) assert.deepEqual([entry.version,entry.bytes,entry.sha256], expected[entry.language]);
 });

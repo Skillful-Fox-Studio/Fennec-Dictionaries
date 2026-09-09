@@ -6,6 +6,8 @@
   "scripts": {
     "test": "node --test",
     "build:ru": "node scripts/build.mjs recipes/ru.json",
+    "build:fr": "node scripts/build.mjs recipes/fr-FR.json",
+    "build:it": "node scripts/build.mjs recipes/it-IT.json",
     "sign": "node scripts/sign.mjs"
   }
 }
