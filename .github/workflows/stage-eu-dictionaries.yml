@@ -1,4 +1,4 @@
-name: Stage accepted FR and IT dictionaries
+name: Stage FR and IT dictionaries
 on:
   workflow_dispatch:
 permissions:
@@ -22,11 +22,11 @@ jobs:
         with:
           node-version: '22'
       - run: npm test
-      - name: Build accepted packages from pinned upstream sources
+      - name: Build packages from pinned upstream sources
         run: |
           npm run build:fr
           npm run build:it
-      - name: Create owner-review draft releases
+      - name: Create draft releases
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -35,10 +35,10 @@ jobs:
             dist/fr-FR-7.7-fennec.1/UPSTREAM-LICENSE.txt \
             --target "$GITHUB_SHA" --draft \
             --title "French (France, classic) 7.7 for Fennec" \
-            --notes "Owner-accepted FR 7.7 classic dictionary. Review package identity, provenance and MPL-2.0 notices before publishing."
+            --notes "French (France, classic orthography) spelling dictionary for Fennec. Dictionary data and complete MPL-2.0 notices are included in the release assets."
           gh release create it-IT-5.1.1-fennec.1 \
             dist/it-IT-5.1.1-fennec.1/dictionary-it-IT-5.1.1-fennec.1.json \
             dist/it-IT-5.1.1-fennec.1/UPSTREAM-LICENSE.txt \
             --target "$GITHUB_SHA" --draft \
             --title "Italian (Italy) 5.1.1 for Fennec" \
-            --notes "Owner-accepted IT 5.1.1 dictionary. Review package identity, provenance, GPL-3.0 and legacy notices before publishing."
+            --notes "Italian (Italy) spelling dictionary for Fennec. Dictionary data, GPL-3.0 terms, and applicable upstream legacy notices are included in the release assets."

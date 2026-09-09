@@ -1,4 +1,4 @@
-name: Sign reviewed dictionary catalog
+name: Sign dictionary catalog
 on:
   workflow_dispatch:
 permissions:
@@ -22,15 +22,16 @@ jobs:
         with:
           node-version: '22'
       - run: npm test
-      - name: Verify reviewed catalog and public assets
+      - name: Verify catalog and public assets
         run: node scripts/preflight.mjs
       - name: Sign with protected environment secret
         env:
           FENNEC_DICTIONARY_SIGNING_KEY: ${{ secrets.FENNEC_DICTIONARY_SIGNING_KEY }}
         run: node scripts/sign.mjs publication/catalog-input.json dist/catalog-signed.json fennec-dictionaries-1
-      - name: Store signed catalog in a draft release for final review
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          sequence=$(node --input-type=module -e "import{readFileSync}from'node:fs';console.log(JSON.parse(readFileSync('publication/catalog-input.json')).sequence)")
-          gh release create "catalog-$sequence" dist/catalog-signed.json --target "$GITHUB_SHA" --draft --title "Dictionary catalog $sequence" --notes "Signed catalog for owner review. Not yet deployed to catalog/v1.json."
+      - name: Store signed catalog temporarily
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: signed-dictionary-catalog
+          path: dist/catalog-signed.json
+          if-no-files-found: error
+          retention-days: 7
