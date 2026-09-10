@@ -1,0 +1,59 @@
+{
+  "language": "es-ES",
+  "name": "Spanish (Spain)",
+  "version": "2.8-fennec.1",
+  "engine": "hunspell-wasm-0.3.0",
+  "tokenizer": "latin-v1",
+  "source": "https://github.com/wooorm/dictionaries/tree/512239a36ae216cd9e59d17952c715c27e71b8a9/dictionaries/es",
+  "license": "MPL-1.1 or later selected; complete text, attribution and upstream source included",
+  "files": {
+    "aff": {
+      "url": "https://raw.githubusercontent.com/wooorm/dictionaries/512239a36ae216cd9e59d17952c715c27e71b8a9/dictionaries/es/index.aff",
+      "bytes": 167135,
+      "sha256": "892039d59db11d747061b81c3a92a52d48ba0e055b5835af1943cbd3c2fba85b"
+    },
+    "dic": {
+      "url": "https://raw.githubusercontent.com/wooorm/dictionaries/512239a36ae216cd9e59d17952c715c27e71b8a9/dictionaries/es/index.dic",
+      "bytes": 706202,
+      "sha256": "907f786a8ceb3456722b20ad91dd4dbe99c5c16e45015ea63155e36f26b06d2c"
+    },
+    "notice": {
+      "bytes": 31998,
+      "sha256": "012cb6aa2df9414e4fba3e52af5b98677663bf5b93c0528f9a64ad4e15845b3d",
+      "parts": [
+        {
+          "label": "dictionary-es/license",
+          "url": "https://raw.githubusercontent.com/wooorm/dictionaries/512239a36ae216cd9e59d17952c715c27e71b8a9/dictionaries/es/license",
+          "bytes": 2596,
+          "sha256": "a21581497f07b5e550e438d26890ea2b1704492357de67740613bd589b1c652a"
+        },
+        {
+          "label": "rla-es-v2.8/LICENSE.md",
+          "url": "https://raw.githubusercontent.com/sbosio/rla-es/v2.8/LICENSE.md",
+          "bytes": 991,
+          "sha256": "2b70fd5cb8d3b34cc6ae322c969557a2270b99017594addb2531ef5ffd9e1b17"
+        },
+        {
+          "label": "rla-es-v2.8/README.md",
+          "url": "https://raw.githubusercontent.com/sbosio/rla-es/v2.8/README.md",
+          "bytes": 2525,
+          "sha256": "817d41227fa7f4d4c3318b896e0e5321c260a2a898aac7fb64b4edec12e32b0a"
+        },
+        {
+          "label": "MPL-1.1.txt",
+          "url": "https://raw.githubusercontent.com/sbosio/rla-es/v2.8/LICENSE/MPL-1.1.txt",
+          "bytes": 25755,
+          "sha256": "53692a2ed6c6a2c6ec9b32dd0b820dfae91e0a1fcdf625ca9ed0bdf8705fcc4f"
+        }
+      ]
+    }
+  },
+  "releaseAssets": [
+    {
+      "name": "UPSTREAM-SOURCE.zip",
+      "url": "https://codeload.github.com/sbosio/rla-es/zip/refs/tags/v2.8",
+      "bytes": 3453131,
+      "sha256": "83b60fdddf01d0dc626d47a96f9631cc26824e7dcc4173ad01c4f41e7d8f3da2"
+    }
+  ]
+}

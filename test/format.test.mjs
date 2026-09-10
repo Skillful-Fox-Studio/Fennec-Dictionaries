@@ -96,13 +96,28 @@ test('FR and IT release recipes pin the accepted Hunspell candidates and complet
   assert.equal(it.files.notice.parts.length, 10);
 });
 
-test('sequence-2 publication input retains RU and pins the built FR/IT entries', async () => {
+test('DE and ES recipes pin exact qualified data, complete notices and upstream source archives', async () => {
+  const de = JSON.parse(await readFile(new URL('../recipes/de-DE.json', import.meta.url)));
+  const es = JSON.parse(await readFile(new URL('../recipes/es-ES.json', import.meta.url)));
+  assert.deepEqual([de.language,de.version,de.engine], ['de-DE','20161207-fennec.1','hunspell-wasm-0.3.0']);
+  assert.equal(de.files.dic.sha256, 'b5c781a0cf6f285fb6b9b8ab02fbea104b987104a1efdda8a835837e89e3ec77');
+  assert.equal(de.files.notice.parts.length, 3);
+  assert.equal(de.releaseAssets[0].sha256, '17296f03c5fea62d76ecc530ebe80f6adc430278f58d472dc1842d71612960a8');
+  assert.deepEqual([es.language,es.version,es.engine], ['es-ES','2.8-fennec.1','hunspell-wasm-0.3.0']);
+  assert.equal(es.files.dic.sha256, '907f786a8ceb3456722b20ad91dd4dbe99c5c16e45015ea63155e36f26b06d2c');
+  assert.equal(es.files.notice.parts.length, 4);
+  assert.equal(es.releaseAssets[0].sha256, '83b60fdddf01d0dc626d47a96f9631cc26824e7dcc4173ad01c4f41e7d8f3da2');
+});
+
+test('sequence-3 publication input retains existing entries and pins the built DE/ES entries', async () => {
   const publication = JSON.parse(await readFile(new URL('../publication/catalog-input.json', import.meta.url)));
   assert.equal(validateCatalog(publication), publication);
-  assert.equal(publication.sequence, 2);
-  assert.deepEqual(publication.dictionaries.map(entry => entry.language), ['ru','fr-FR','it-IT']);
+  assert.equal(publication.sequence, 3);
+  assert.deepEqual(publication.dictionaries.map(entry => entry.language), ['ru','de-DE','fr-FR','es-ES','it-IT']);
   const expected = {
+    'de-DE':['20161207-fennec.1',1269536,'ae417fdd594e9200bf0aa4b5c812b0150ed53ee968041bf4a99d21ffa089be9d'],
     'fr-FR':['7.7-fennec.1',1547452,'1d567681a52043eb0506a2bf9271ddfc785bf554e180b30db6b9729b271be9ac'],
+    'es-ES':['2.8-fennec.1',970564,'42b15070fb8f2e7f7bbc8300a397fa988188add2edd9d3cb07a454c2cda0c7ba'],
     'it-IT':['5.1.1-fennec.1',1597715,'c4fed67f3e105af351e0683c5631ca1c3ff5aab46ee02425d24558d91f48b75b'],
   };
   for (const entry of publication.dictionaries.slice(1)) assert.deepEqual([entry.version,entry.bytes,entry.sha256], expected[entry.language]);

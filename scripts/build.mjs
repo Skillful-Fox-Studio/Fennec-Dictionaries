@@ -12,5 +12,6 @@ await mkdir(directory, { recursive: true });
 await writeFile(resolve(directory, assetName(entry)), bytes);
 await writeFile(resolve(directory, 'entry.json'), encode(entry));
 await writeFile(resolve(directory, 'UPSTREAM-LICENSE.txt'), files.notice);
+for (const asset of files.releaseAssets) await writeFile(resolve(directory, asset.name), asset.bytes);
 console.log(`${assetName(entry)}: ${bytes.length} bytes, SHA-256 ${entry.sha256}`);
 console.log('Built locally only. Nothing was signed or published.');

@@ -7,9 +7,11 @@ Dictionary packages are available in [Releases](https://github.com/Skillful-Fox-
 The repository tooling is MIT-licensed. Dictionary data retains its respective upstream licenses.
 
 Release recipes are hash-pinned and produce packages locally without signing or
-uploading. Current recipes cover Russian, French (France, classic orthography)
-and Italian (Italy). French and Italian require Hunspell/WASM 0.3.0; each built
-package carries its complete upstream attribution and license material.
+uploading. Current recipes cover Russian, German (Germany), French (France,
+classic orthography), Spanish (Spain) and Italian (Italy). European packs use
+Hunspell/WASM 0.3.0. Each built package carries complete upstream attribution
+and license material; German and Spanish releases also retain their exact
+upstream source archives.
 
 Catalog sequence 2 is production-signed and independently verified. It retains
 the existing Russian entry and adds the published FR 7.7 Classic and IT 5.1.1
