@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { assembleNotice, decodeNoticePart, extractZipMembers } from '../scripts/sources.mjs';
+import { assembleNotice, decodeNoticePart, extractZipMembers, releaseAssetName } from '../scripts/sources.mjs';
 
 function storedZip(name, contents) {
   const filename = Buffer.from(name);
@@ -35,4 +35,10 @@ test('transcodes declared ISO-8859-1 notices and rejects undeclared invalid UTF-
   assert.equal(decodeNoticePart(Buffer.from([0x63,0x69,0x74,0x74,0xe0]), 'iso-8859-1').toString(), 'città');
   assert.throws(() => decodeNoticePart(Buffer.from([0xe0])), /encoded data/);
   assert.throws(() => decodeNoticePart(Buffer.from('x'), 'unknown'), /encoding/);
+});
+
+test('accepts flat release asset names and rejects paths', () => {
+  assert.equal(releaseAssetName('UPSTREAM-SOURCE.tar.bz2'), 'UPSTREAM-SOURCE.tar.bz2');
+  assert.throws(() => releaseAssetName('../source.zip'), /asset name/);
+  assert.throws(() => releaseAssetName('folder/source.zip'), /asset name/);
 });

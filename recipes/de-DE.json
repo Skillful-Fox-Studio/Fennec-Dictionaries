@@ -1,0 +1,53 @@
+{
+  "language": "de-DE",
+  "name": "German (Germany)",
+  "version": "20161207-fennec.1",
+  "engine": "hunspell-wasm-0.3.0",
+  "tokenizer": "latin-v1",
+  "source": "https://github.com/wooorm/dictionaries/tree/512239a36ae216cd9e59d17952c715c27e71b8a9/dictionaries/de",
+  "license": "GPL-2.0 or GPL-3.0; both license texts and complete upstream source included",
+  "files": {
+    "aff": {
+      "url": "https://raw.githubusercontent.com/wooorm/dictionaries/512239a36ae216cd9e59d17952c715c27e71b8a9/dictionaries/de/index.aff",
+      "bytes": 19199,
+      "sha256": "57fdd1b16aac2131003c91e0cf2a488becb970382a402a9ce089307301cb3ef0"
+    },
+    "dic": {
+      "url": "https://raw.githubusercontent.com/wooorm/dictionaries/512239a36ae216cd9e59d17952c715c27e71b8a9/dictionaries/de/index.dic",
+      "bytes": 1118194,
+      "sha256": "b5c781a0cf6f285fb6b9b8ab02fbea104b987104a1efdda8a835837e89e3ec77"
+    },
+    "notice": {
+      "bytes": 53978,
+      "sha256": "eeb54f5bcc55499d0c7800ed585f1e4f6d195a10cd831132ea62901c5ee71bba",
+      "parts": [
+        {
+          "label": "dictionary-de/license",
+          "url": "https://raw.githubusercontent.com/wooorm/dictionaries/512239a36ae216cd9e59d17952c715c27e71b8a9/dictionaries/de/license",
+          "bytes": 760,
+          "sha256": "03abf202c6e207d41f054083cafccbb174a30f6b330ea8dba3aeef0a279cb83e"
+        },
+        {
+          "label": "GPL-2.0.txt",
+          "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
+          "bytes": 17984,
+          "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6"
+        },
+        {
+          "label": "GPL-3.0.txt",
+          "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+          "bytes": 35149,
+          "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+        }
+      ]
+    }
+  },
+  "releaseAssets": [
+    {
+      "name": "UPSTREAM-SOURCE.tar.bz2",
+      "url": "https://www.j3e.de/ispell/igerman98/dict/igerman98-20161207.tar.bz2",
+      "bytes": 470207,
+      "sha256": "17296f03c5fea62d76ecc530ebe80f6adc430278f58d472dc1842d71612960a8"
+    }
+  ]
+}

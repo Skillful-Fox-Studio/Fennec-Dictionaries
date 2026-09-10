@@ -1,4 +1,4 @@
-name: Stage FR and IT dictionaries
+name: Stage DE and ES dictionaries
 on:
   workflow_dispatch:
 permissions:
@@ -12,8 +12,6 @@ jobs:
     environment: dictionary-publishing
     runs-on: ubuntu-24.04
     timeout-minutes: 10
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -24,21 +22,18 @@ jobs:
       - run: npm test
       - name: Build packages from pinned upstream sources
         run: |
-          npm run build:fr
-          npm run build:it
-      - name: Create draft releases
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh release create fr-FR-7.7-fennec.1 \
-            dist/fr-FR-7.7-fennec.1/dictionary-fr-FR-7.7-fennec.1.json \
-            dist/fr-FR-7.7-fennec.1/UPSTREAM-LICENSE.txt \
-            --target "$GITHUB_SHA" --draft \
-            --title "French (France, classic) 7.7 for Fennec" \
-            --notes "French (France, classic orthography) spelling dictionary for Fennec. Dictionary data and complete MPL-2.0 notices are included in the release assets."
-          gh release create it-IT-5.1.1-fennec.1 \
-            dist/it-IT-5.1.1-fennec.1/dictionary-it-IT-5.1.1-fennec.1.json \
-            dist/it-IT-5.1.1-fennec.1/UPSTREAM-LICENSE.txt \
-            --target "$GITHUB_SHA" --draft \
-            --title "Italian (Italy) 5.1.1 for Fennec" \
-            --notes "Italian (Italy) spelling dictionary for Fennec. Dictionary data, GPL-3.0 terms, and applicable upstream legacy notices are included in the release assets."
+          npm run build:de
+          npm run build:es
+      - name: Store candidates temporarily
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: de-es-dictionary-candidates
+          path: |
+            dist/de-DE-20161207-fennec.1/dictionary-de-DE-20161207-fennec.1.json
+            dist/de-DE-20161207-fennec.1/UPSTREAM-LICENSE.txt
+            dist/de-DE-20161207-fennec.1/UPSTREAM-SOURCE.tar.bz2
+            dist/es-ES-2.8-fennec.1/dictionary-es-ES-2.8-fennec.1.json
+            dist/es-ES-2.8-fennec.1/UPSTREAM-LICENSE.txt
+            dist/es-ES-2.8-fennec.1/UPSTREAM-SOURCE.zip
+          if-no-files-found: error
+          retention-days: 7

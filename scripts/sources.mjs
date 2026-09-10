@@ -15,7 +15,10 @@ function checked(bytes, source, label) {
 
 async function download(source, label) {
   if (typeof source.url !== 'string' || !source.url.startsWith('https://')) throw new Error(`Invalid source URL: ${label}`);
-  const response = await fetch(source.url, { signal: AbortSignal.timeout(30000) });
+  const response = await fetch(source.url, {
+    headers: { 'User-Agent': 'Fennec-Dictionaries/1.0 (+https://github.com/Skillful-Fox-Studio/Fennec-Dictionaries)' },
+    signal: AbortSignal.timeout(30000),
+  });
   if (!response.ok) throw new Error(`Download failed: ${label} (${response.status})`);
   const chunks = [];
   let length = 0;
@@ -25,6 +28,13 @@ async function download(source, label) {
     chunks.push(chunk);
   }
   return checked(Buffer.concat(chunks), source, label);
+}
+
+export function releaseAssetName(name) {
+  if (typeof name !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,120}$/.test(name)) {
+    throw new Error('Invalid release asset name');
+  }
+  return name;
 }
 
 export function extractZipMembers(archive, requested) {
@@ -114,6 +124,16 @@ export async function loadRecipeFiles(recipe) {
     files.notice = checked(assembleNotice(parts), recipe.files.notice, 'notice');
   } else {
     files.notice = await resolve(recipe.files.notice, 'notice');
+  }
+  if (recipe.releaseAssets !== undefined && (!Array.isArray(recipe.releaseAssets) || recipe.releaseAssets.length > 4)) {
+    throw new Error('Invalid release assets');
+  }
+  files.releaseAssets = [];
+  for (const [index, source] of (recipe.releaseAssets ?? []).entries()) {
+    files.releaseAssets.push({
+      name: releaseAssetName(source.name),
+      bytes: await download(source, `release asset ${index + 1}`),
+    });
   }
   return files;
 }
